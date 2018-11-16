@@ -15,6 +15,28 @@
 RCT_EXPORT_MODULE();
 
 // Available as NativeModules.IntercomWrapper.registerIdentifiedUser
+RCT_EXPORT_METHOD(initialize:(NSDictionary*)options callback:(RCTResponseSenderBlock)callback) {
+    NSLog(@"initialize with %@", options);
+
+    NSString* apiKey      = options[@"apiKey"];
+    NSString* appId       = options[@"appId"];
+
+    if (apiKey.length > 0 && appId.length > 0) {
+        [Intercom setApiKey:apiKey forAppId:appId];
+
+        #ifdef DEBUG
+            [Intercom enableLogging];
+        #endif
+
+        [Intercom registerUnidentifiedUser];
+        callback(@[[NSNull null]]);
+    } else {
+        NSLog(@"[Intercom] ERROR - No credentials registered. You must supply an apiKey and appId");
+        callback(@[RCTMakeError(@"Error", nil, nil)]);
+    }
+};
+
+// Available as NativeModules.IntercomWrapper.registerIdentifiedUser
 RCT_EXPORT_METHOD(registerIdentifiedUser:(NSDictionary*)options callback:(RCTResponseSenderBlock)callback) {
     NSLog(@"registerIdentifiedUser with %@", options);
 
