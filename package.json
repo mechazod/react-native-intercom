@@ -1,6 +1,6 @@
 {
   "name": "react-native-intercom-mechazod",
-  "version": "12.3.2",
+  "version": "12.3.3",
   "description": "A React Native client for Intercom.io",
   "main": "./lib/IntercomClient.js",
   "scripts": {
