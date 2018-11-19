@@ -272,6 +272,12 @@ Intercom.updateUser({
 Intercom.setUserHash(hash_received_from_backend)
 ```
 
+### IOS (only)
+Note: this method is called on the index.ios.js or entry point of your RN app
+```javascript
+Intercom.initialize(`<INTERCOM_API_KEY>`, `<INTERCOM_API_KEY>`);
+```
+
 ### Sign Out
 ```javascript
 Intercom.logout()
